@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>程序加载中、、、、</title>
+	  <!-- Insert this line above script imports  -->
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+  <script src="jq1_12_4.js"></script>
+  <!-- Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
+  </head>
+  <body style="background:#333333;width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;">
+			<center>
+			<div style="width:100%;height:200px;position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin:auto;">
+  <b id="debug" style="font-zise:36px;color:#FF0000;">
+  Loading......
+</b>
+<hr/>
+  <b id="debug" style="font-zise:36px;color:#FF9900;">
+  QQ:995204185 ------ E_Mail:995204185@qq.com
+</b>
+</div>
+</center>
+
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+<!--     We are using Node.js <script>document.write(process.versions.node)</script>,
+    Chromium <script>document.write(process.versions.chrome)</script>,
+    and Electron <script>document.write(process.versions.electron)</script>. -->
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+	
+	$(document).ready(function(){
+	if (navigator.onLine) {//网络状态检测 
+		$.ajax({
+			type: "GET",
+			url:"http://42.51.158.129/app/app.php?type=ping_net",//判断服务器是否正常
+			success:function(data){window.location.href="http://42.51.158.129/app/app.php?type=get_main_html";},//服务器正常则加载主页面
+		    error:function(xhr){$('#debug').html("错误提示： " + xhr.status + " " + xhr.statusText+"(服务器不通，请稍后重试)");}
+		});
+	} 
+	else {
+	$('#debug').html('网络不通,看下你家网线是不是给老鼠咬断了');
+	}
+	
+	});
+  </script>
+</html>
